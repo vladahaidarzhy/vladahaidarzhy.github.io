@@ -1,3 +1,15 @@
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+    }
+});
+
 // The form submission is now handled by Formspree directly.
 // No custom JavaScript is needed for the basic submission.
 
