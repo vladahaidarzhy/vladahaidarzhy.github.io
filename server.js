@@ -12,8 +12,8 @@ app.use(express.static('public'));
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Use your email service
     auth: {
-        user: 'danjchalmers@gmail.com', // Your email
-        pass: 'Atlantis2613!' // Your email password
+        user: 'vladahaidarzhy@gmail.com', // Your email
+        pass: 'vladahaidarzhy2613' // Your email password
     }
 });
 
@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 app.post('/send', (req, res) => {
     const mailOptions = {
         from: req.body.email,
-        to: 'danjchalmers@gmail.com', // Your email to receive messages
+        to: 'vladahaidarzhy@gmail.com', // Your email to receive messages
         subject: 'New Contact Form Submission',
         text: `Name: ${req.body.name}\nEmail: ${req.body.email}\nMessage: ${req.body.message}`
     };
