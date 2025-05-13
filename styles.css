@@ -473,7 +473,11 @@ form button:hover {
     max-width: 900px; /* Adjust to fit three slides comfortably */
     position: relative;
     margin: 40px auto; /* Added top/bottom margin */
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */ /* Removed light gray background */
+    background-image: url('bricksBg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 20px 0; /* Padding top/bottom, sides will be handled by slide visibility */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -667,5 +671,24 @@ form button:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* About Page Intro Section - REMOVING THESE RULES */
+/*
+.about-intro-section {
+    background-image: url('bricksBg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 20px; 
+}
+
+.about-intro-section .bio-section {
+    background-color: rgba(255, 255, 255, 0.85); 
+}
+
+.about-intro-section .bio-text p {
+    color: #333; 
+}
+*/
 
 /* End of file additions */ 
