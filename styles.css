@@ -1,16 +1,82 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Rubik', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     color: #333;
     padding-bottom: 60px;
+    /* background-image: url('splashBg.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center center; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
 }
 
 header {
-    background: #f4f4f4;
+    background: #f4f4f4; /* Simple background for default headers */
     padding: 20px;
     text-align: center;
+    /* Removed image properties, will be on .home-intro-header */
+}
+
+header h1 {
+    font-weight: 700;
+    color: #333; /* Default dark color for text on simple header */
+    margin: 0;
+}
+/* Removed header p styling as it's not in simplified headers */
+
+.home-intro-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* For positioning the moving shape */
+    background-color: #f9fafb; /* Changed to new light gray background */
+    /* background-image: url('purpleBg.jpg'); */ /* Removed image */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */ /* Not needed for solid color */
+    padding: 20px; /* Ensures content doesn't touch edges */
+    text-align: center;
+    overflow: hidden; /* Prevents shape from causing scrollbars if it animates outside bounds */
+}
+
+.home-intro-header h1 {
+    font-size: 4.5rem; /* Adjust size as needed */
+    color: #333; /* Changed to dark color for white background */
+    font-weight: 700;
+    position: relative; /* To ensure it's above the moving shape */
+    z-index: 1;
+    margin: 0;
+}
+
+.moving-shape {
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    max-width: 550px;
+    max-height: 550px;
+    top: 50%;
+    left: 50%;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 70%); /* Changed to dark subtle gradient */
+    border-radius: 50%;
+    z-index: 0; /* Behind the h1 text */
+    animation: subtleDrift 20s infinite ease-in-out alternate;
+    transform: translate(-50%, -50%); /* Initial centering */
+}
+
+@keyframes subtleDrift {
+    0% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.25;
+    }
+    100% {
+        transform: translate(-45%, -55%) scale(1.1);
+        opacity: 0.35;
+    }
 }
 
 nav {
@@ -179,7 +245,7 @@ form button:hover {
         position: absolute;
         top: 100%;
         left: 0;
-        z-index: 10;
+        z-index: 999;
     }
 
     nav ul.active {
@@ -269,4 +335,337 @@ form button:hover {
         gap: 10px;
         padding: 0 10px;
     }
-} 
+}
+
+.scroll-down-arrow-container {
+    margin-top: 40px; /* Space below the H1 text, adjust as needed */
+    /* display: flex; */ /* No longer needed for single image */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    z-index: 1;
+    animation: bobArrow 1.5s infinite ease-in-out;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.scroll-down-arrow-container img {
+    width: 60px; /* Increased size */
+    height: auto;
+    display: block; /* Prevents extra space below image */
+    margin: 0 auto; /* Center the image if container is wider */
+    transition: transform 0.1s ease-out; /* Smooth transition for click effect */
+}
+
+/* Removed :active state as JS will handle a more permanent clicked state */
+/*
+.scroll-down-arrow-container img:active {
+    transform: translateY(3px); 
+}
+*/
+
+.scroll-down-arrow-container.arrow-is-clicked {
+    transform: translateY(5px); /* Keep it slightly down */
+    animation: none !important; /* Stop the bobbing animation */
+}
+
+/* Removed .arrow-line and .arrow-head styles */
+
+@keyframes bobArrow {
+    0% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(8px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+}
+
+/* Parallax and Content Section Styles */
+.parallax {
+    min-height: 50vh; /* Adjust as needed, e.g., 400px */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex; /* Optional: if you want to center text ON the parallax image */
+    align-items: center; /* Optional */
+    justify-content: center; /* Optional */
+}
+
+.parallax-1 {
+    background-image: url('vladaOne.jpg');
+}
+
+.parallax-2 {
+    background-image: url('vladaTwo.jpg');
+}
+
+.parallax-3 {
+    background-image: url('vladaThree.jpg');
+}
+
+.content-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #ffffff; /* White background for content sections */
+    color: #333;
+}
+
+.content-section h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.content-section p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media Query to disable parallax on mobile, as suggested by W3Schools */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+
+/* Adjust gallery for very small screens if needed */
+@media (max-width: 480px) {
+    .gallery-grid {
+        /* Adjust minmax if images become too small */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 0 10px;
+    }
+}
+
+/* Site Credit Footer Styles */
+.site-credit-footer {
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #eee; /* Optional: a light separator line */
+}
+
+.site-credit-footer p {
+    margin-bottom: 0; /* Remove bottom margin as they are side-by-side */
+    margin-right: 8px; /* Add some space between text and logo */
+    font-size: 0.9em;
+    color: #555;
+}
+
+.site-credit-footer img {
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    vertical-align: middle;
+}
+
+/* Testimonial Carousel Styles */
+.testimonial-carousel-container {
+    max-width: 900px; /* Adjust to fit three slides comfortably */
+    position: relative;
+    margin: 40px auto; /* Added top/bottom margin */
+    background-color: #f9f9f9;
+    padding: 20px 0; /* Padding top/bottom, sides will be handled by slide visibility */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden; /* Crucial for the sliding effect */
+}
+
+.slides-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Width will be calculated by JS or be very large to hold all slides */
+}
+
+.testimonial-slide {
+    /* display: none; */ /* Removed: slides are always displayed in the track */
+    flex: 0 0 calc(100% / 3); /* Aim for three slides, adjust as needed for spacing */
+    box-sizing: border-box;
+    padding: 20px 15px;
+    text-align: center;
+    transform: scale(0.85) translateY(15px); /* Default smaller, slightly offset */
+    opacity: 0.6;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    position: relative; /* For profile pic positioning if needed directly on slide */
+}
+
+.testimonial-slide.active-slide {
+    transform: scale(1.05) translateY(0); /* Middle slide is larger and aligned */
+    opacity: 1;
+}
+
+.testimonial-content {
+    position: relative; 
+    background-color: #fff; 
+    padding: 20px;
+    /* padding-left: 85px; */ /* Removed specific left padding for text block */
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    aspect-ratio: 1.5 / 1; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+}
+
+.testimonial-profile-pic {
+    width: 50px; /* Slightly smaller profile pic */
+    height: 50px; /* Slightly smaller profile pic */
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 20px;  /* Positioned from the top padding edge */
+    left: 20px; /* Positioned from the left padding edge */
+    transform: none; 
+    border: 2px solid #f0f0f0; 
+}
+
+.testimonial-content cite {
+    font-size: 0.9em; 
+    color: #333;
+    font-weight: bold;
+    font-style: normal; /* Ensure text is not italicized */
+    display: block; /* Take full width available */
+    margin-top: 60px; /* Space to clear profile pic (50px height + 10px buffer) */
+    margin-bottom: 0px; /* Minimized space before the quote */
+    padding-left: 0; /* Will align with parent's padding */
+}
+
+.testimonial-content blockquote {
+    font-size: 1.0em; /* Adjusted for space */
+    font-style: italic;
+    margin-top: 0; /* Remove top margin to bring closer to cite */
+    margin-bottom: 10px; 
+    color: #555;
+    padding-left: 0; /* Will align with parent's padding */
+    margin-left: 0; /* Reset default blockquote margin */
+    margin-right: 0; /* Reset default blockquote margin */
+}
+
+/* Next & previous buttons - adjust positioning and appearance */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 12px;
+    margin-top: 0; /* Reset margin-top */
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.3s ease;
+    border-radius: 50%;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 10; /* Ensure they are above slides */
+}
+.prev {
+    left: 15px;
+}
+.next {
+    right: 15px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* Dots indicators REMOVED */
+/*
+.dots-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 12px; 
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+*/
+
+/* Remove old .fade animation if it exists */
+/* @keyframes fade { ... } */
+
+/* Responsive Carousel for Mobile */
+@media (max-width: 768px) {
+    .testimonial-carousel-container {
+        padding: 20px 10px; /* Add some side padding for mobile view */
+    }
+
+    .slides-track {
+        /* Track will still be flex, JS handles positioning */
+    }
+
+    .testimonial-slide {
+        flex: 0 0 100%; /* Each slide takes full width */
+        transform: scale(1) translateY(0); /* Reset transform */
+        opacity: 1; /* Full opacity */
+        padding: 0 10px; /* Adjust slide padding for a bit of spacing */
+    }
+
+    .testimonial-slide.active-slide {
+        /* No special scaling needed for active slide in 1-across view */
+        /* The transform and opacity are already set on .testimonial-slide */
+    }
+
+    .testimonial-content {
+        /* Ensure padding is appropriate for single view */
+        padding-left: 75px; /* Keep space for profile pic */
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+        min-height: 0; /* Let content define height */
+        aspect-ratio: unset; /* Remove fixed aspect ratio on mobile */
+    }
+
+    .testimonial-profile-pic {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+    }
+
+    .prev, .next {
+        font-size: 20px;
+        padding: 10px;
+        background-color: rgba(0,0,0,0.2);
+    }
+    .prev { left: 5px; }
+    .next { right: 5px; }
+}
+
+/* Testimonials Page Specific Styles */
+#testimonials-section > h2 {
+    text-align: center;
+    margin-bottom: 15px; /* Existing general h2 margin is 25px, can adjust if needed */
+}
+
+#testimonials-section > p {
+    text-align: center; /* Also center the introductory paragraph */
+    margin-bottom: 30px; /* Space before the carousel */
+    max-width: 700px; /* Optional: constrain width of intro paragraph */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* End of file additions */ 
