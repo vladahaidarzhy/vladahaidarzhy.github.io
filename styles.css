@@ -128,6 +128,7 @@ form button:hover {
 .welcome-content {
     text-align: center;
     padding: 30px 20px;
+    margin-bottom: 0px;
 }
 
 .featured-image-container {
