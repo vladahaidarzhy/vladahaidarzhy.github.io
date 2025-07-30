@@ -209,6 +209,49 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Portfolio Project Reveal - REMOVING THIS SECTION
+    /*
+    const projectSelectors = document.querySelectorAll('.project-selector-box');
+    projectSelectors.forEach(selector => {
+        selector.addEventListener('click', () => {
+            const wrapper = selector.closest('.project-item-wrapper');
+            if (!wrapper) return;
+            const detailsContent = wrapper.querySelector('.project-details-content');
+            if (!detailsContent) return;
+            detailsContent.classList.toggle('active');
+            if (detailsContent.classList.contains('active')) {
+            } else {
+                detailsContent.style.paddingTop = '0';
+                detailsContent.style.paddingBottom = '0';
+            }
+        });
+    });
+    */
+
+    // JS Parallax for Mobile and Desktop - REMOVING THIS SECTION
+    /*
+    const parallaxElements = document.querySelectorAll('.parallax');
+    const parallaxSpeed = 0.4; 
+
+    function updateParallax() {
+        if (parallaxElements.length > 0) {
+            parallaxElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const bgY = -(rect.top * parallaxSpeed);
+                el.style.backgroundPositionY = bgY + 'px';
+            });
+        }
+    }
+
+    if (parallaxElements.length > 0) {
+        window.addEventListener('scroll', () => {
+            window.requestAnimationFrame(updateParallax);
+        });
+        updateParallax(); 
+    }
+    */
+
 });
 
 // The form submission is now handled by Formspree directly.

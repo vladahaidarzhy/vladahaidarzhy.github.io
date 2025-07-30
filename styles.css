@@ -387,13 +387,13 @@ form button:hover {
 /* Parallax and Content Section Styles */
 .parallax {
     min-height: 50vh; /* Adjust as needed, e.g., 400px */
-    background-attachment: fixed;
-    background-position: center;
+    background-attachment: fixed; /* Restored */
+    background-position: center; /* Initial horizontal and vertical center */
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex; /* Optional: if you want to center text ON the parallax image */
-    align-items: center; /* Optional */
-    justify-content: center; /* Optional */
+    /* display: flex; */ /* Optional: only if centering content ON parallax image itself */
+    /* align-items: center; */ /* Optional */
+    /* justify-content: center; */ /* Optional */
 }
 
 .parallax-1 {
@@ -428,7 +428,7 @@ form button:hover {
     margin-right: auto;
 }
 
-/* Media Query to disable parallax on mobile, as suggested by W3Schools */
+/* Media Query to disable parallax on mobile, as suggested by W3Schools - RESTORED */
 @media only screen and (max-device-width: 1366px) {
     .parallax {
         background-attachment: scroll;
@@ -672,7 +672,134 @@ form button:hover {
     margin-right: auto;
 }
 
-/* About Page Intro Section - REMOVING THESE RULES */
+/* Portfolio Page Styles */
+.project {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Optional separator for projects */
+}
+
+.project:last-child {
+    border-bottom: none;
+}
+
+.project h3 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.project p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.project-showcase-layout {
+    /* display: flex; */ /* No longer a flex container for two columns */
+    /* flex-wrap: wrap; */ 
+    /* align-items: flex-start; */ 
+    /* gap: 30px; */ 
+    /* Styles for this container can be simplified or removed if it only holds the grid */
+}
+
+.project-showcase-selectors {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+}
+
+.project-selector-box {
+    background-color: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 8px; 
+    border: 1px solid #eee;
+    text-align: center;
+    min-height: 150px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer; 
+    /* position: relative; */ /* Removed */
+    /* z-index: 1; */ /* Removed */
+}
+
+.project-selector-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.project-selector-box h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    color: #000; /* Changed to black */
+}
+
+.project-selector-box p {
+    font-size: 0.9em;
+    color: #000; /* Changed to black */
+    margin-bottom: 0;
+}
+
+.project-selector-box.bricks-bg {
+    background-image: url('bricksBg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-selector-box.bricks-bg h4,
+.project-selector-box.bricks-bg p {
+    /* color: #fff; */ /* Removed white text override */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Removed text shadow */
+}
+
+.project-selector-box.splash-bg {
+    background-image: url('splashBg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-selector-box.splash-bg h4,
+.project-selector-box.splash-bg p {
+    /* color: #fff; */ /* Removed white text override */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Removed text shadow */
+}
+
+.project-selector-box.granite-bg {
+    background-image: url('graniteBg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-selector-box.granite-bg h4,
+.project-selector-box.granite-bg p {
+    /* color: #fff; */ /* Removed white text override */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Removed text shadow */
+}
+
+.project-selector-box.paint-bg {
+    background-image: url('paintBg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-selector-box.paint-bg h4,
+.project-selector-box.paint-bg p {
+    /* color: #fff; */ /* Removed white text override */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Removed text shadow */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) { 
+    .project-showcase-selectors {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+
+/* About Page Intro Section */
 /*
 .about-intro-section {
     background-image: url('bricksBg.jpg');
@@ -691,4 +818,74 @@ form button:hover {
 }
 */
 
-/* End of file additions */ 
+/* End of file additions */
+
+/* Portfolio Banner Image */
+.portfolio-banner-image-container {
+    width: 100vw; /* Span full viewport width */
+    position: relative; /* Keep for overlay and for margin trick */
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin-left: calc(50% - 50vw); */ /* Alternative to left:50%/transform for centering a 100vw element */
+    aspect-ratio: 4 / 1; 
+    overflow: hidden; 
+    margin-bottom: 70px; /* Further increased space below the banner */
+    /* No side margins needed now */
+}
+
+.banner-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    font-size: 5vw; /* Scalable font size based on viewport width */
+    /* Adjust 5vw as needed. You might need a media query for a max font size on very large screens */
+    font-weight: 700; 
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Adjusted shadow for potentially smaller text */
+    padding: 2vw 4vw; /* Scalable padding */
+    border: 3px solid white; 
+    border-radius: 5px; 
+    z-index: 1; 
+    white-space: nowrap; /* Ensure text stays on one line */
+    width: auto; /* Allow width to be determined by content */
+    max-width: 90%; /* Prevent it from getting too close to edges on very small screens */
+}
+
+.portfolio-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will cover the container, cropping as needed */
+    object-position: center center; /* Center the image vertically and horizontally */
+    display: block; /* Remove extra space below image */
+}
+
+/* project-showcase-layout should not be here from previous diff */
+.project-showcase-layout {
+    /* display: flex; */ /* No longer a flex container for two columns */
+    /* flex-wrap: wrap; */ 
+    /* align-items: flex-start; */ 
+    /* gap: 30px; */ 
+    /* Styles for this container can be simplified or removed if it only holds the grid */
+}
+
+/* End of file additions */
+
+.project-image-gallery {
+  display: flex; /* Arrange images side-by-side */
+  justify-content: center; /* Center the images in the container */
+  align-items: center; /* Align images vertically */
+  gap: 5px; /* Reduced gap between images */
+  width: 100%; /* Gallery takes full width of its parent */
+  height: 130px; /* Increased height for larger images */
+  margin-top: 10px; /* Space above the gallery */
+}
+
+.project-selector-box img.project-image {
+  height: 100%;    /* <<< Image should fill 100% of the gallery's height */
+  width: auto;      /* Allow width to adjust to maintain aspect ratio */
+  max-width: 48%;   /* Prevent individual images from becoming too wide */
+  object-fit: contain; /* <<< Changed to contain: Scale image down to fit, preserving aspect ratio */
+  border-radius: 5px;
+} 
