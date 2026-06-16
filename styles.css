@@ -176,6 +176,26 @@ form button:hover {
     max-width: 600px;
 }
 
+.bio-kicker {
+    margin: 0 0 10px;
+    color: #777;
+    font-size: 0.9em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.bio-text h1 {
+    margin: 0 0 18px;
+    color: #333;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.bio-text p {
+    margin-top: 0;
+}
+
 .menu-toggle {
     display: none;
     background: #333;
@@ -275,6 +295,10 @@ form button:hover {
 
     .bio-section {
         padding: 15px;
+    }
+
+    .bio-text h1 {
+        font-size: 1.6rem;
     }
 
     section {
