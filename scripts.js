@@ -9,6 +9,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Build Instagram Reel embeds from simple URL fields on the portfolio page.
+    const reelEmbeds = document.querySelectorAll('.project-reel-embed[data-instagram-reel-url]');
+    let hasInstagramReels = false;
+
+    function getCleanInstagramUrl(reelUrl) {
+        try {
+            const parsedUrl = new URL(reelUrl);
+            return `${parsedUrl.origin}${parsedUrl.pathname}`;
+        } catch (error) {
+            return reelUrl;
+        }
+    }
+
+    function processInstagramEmbeds() {
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+            return;
+        }
+
+        const instagramScript = document.createElement('script');
+        instagramScript.src = 'https://www.instagram.com/embed.js';
+        instagramScript.async = true;
+        instagramScript.onload = () => {
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        };
+        document.body.appendChild(instagramScript);
+    }
+
+    reelEmbeds.forEach((embedContainer) => {
+        const reelUrl = embedContainer.dataset.instagramReelUrl.trim();
+
+        if (!reelUrl) return;
+
+        hasInstagramReels = true;
+        const instagramEmbed = document.createElement('blockquote');
+        instagramEmbed.className = 'instagram-media project-instagram-reel';
+        instagramEmbed.dataset.instgrmPermalink = getCleanInstagramUrl(reelUrl);
+        instagramEmbed.dataset.instgrmVersion = '14';
+
+        embedContainer.replaceChildren(instagramEmbed);
+    });
+
+    if (hasInstagramReels) {
+        processInstagramEmbeds();
+    }
+
     // Homepage Intro Fade on Scroll
     const homeIntroHeader = document.querySelector('.home-intro-header');
 
