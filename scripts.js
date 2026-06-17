@@ -105,6 +105,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Mobile-safe parallax effect. This avoids background-attachment: fixed, which mobile browsers handle poorly.
+    const parallaxElements = document.querySelectorAll('.parallax');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (parallaxElements.length > 0 && !prefersReducedMotion) {
+        let ticking = false;
+
+        function updateParallax() {
+            const viewportCenter = window.innerHeight / 2;
+
+            parallaxElements.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+
+                if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+                const elementCenter = rect.top + rect.height / 2;
+                const offset = (viewportCenter - elementCenter) * 0.18;
+                element.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+            });
+
+            ticking = false;
+        }
+
+        function requestParallaxUpdate() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        updateParallax();
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+        window.addEventListener('resize', requestParallaxUpdate);
+    }
+
     // Testimonial Carousel Logic
     const testimonialContainer = document.querySelector('.testimonial-carousel-container');
     if (testimonialContainer) {
@@ -275,29 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    */
-
-    // JS Parallax for Mobile and Desktop - REMOVING THIS SECTION
-    /*
-    const parallaxElements = document.querySelectorAll('.parallax');
-    const parallaxSpeed = 0.4; 
-
-    function updateParallax() {
-        if (parallaxElements.length > 0) {
-            parallaxElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const bgY = -(rect.top * parallaxSpeed);
-                el.style.backgroundPositionY = bgY + 'px';
-            });
-        }
-    }
-
-    if (parallaxElements.length > 0) {
-        window.addEventListener('scroll', () => {
-            window.requestAnimationFrame(updateParallax);
-        });
-        updateParallax(); 
-    }
     */
 
 });

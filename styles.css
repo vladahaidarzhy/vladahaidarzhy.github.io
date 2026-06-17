@@ -411,7 +411,7 @@ form button:hover {
 /* Parallax and Content Section Styles */
 .parallax {
     min-height: 50vh; /* Adjust as needed, e.g., 400px */
-    background-attachment: fixed; /* Restored */
+    background-attachment: scroll;
     background-position: center; /* Initial horizontal and vertical center */
     background-repeat: no-repeat;
     background-size: cover;
@@ -452,10 +452,9 @@ form button:hover {
     margin-right: auto;
 }
 
-/* Media Query to disable parallax on mobile, as suggested by W3Schools - RESTORED */
-@media only screen and (max-device-width: 1366px) {
+@media (max-width: 768px) {
     .parallax {
-        background-attachment: scroll;
+        min-height: 42vh;
     }
 }
 
