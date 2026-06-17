@@ -879,6 +879,7 @@ form button:hover {
     padding: 2vw 4vw; /* Scalable padding */
     border: 3px solid white; 
     border-radius: 5px; 
+    font-weight: 900;
     z-index: 1; 
     white-space: nowrap; /* Ensure text stays on one line */
     width: auto; /* Allow width to be determined by content */
@@ -891,4 +892,66 @@ form button:hover {
     object-fit: cover; /* This will cover the container, cropping as needed */
     object-position: center center; /* Center the image vertically and horizontally */
     display: block; /* Remove extra space below image */
+}
+
+.services-banner-image {
+    object-position: center 75%;
+}
+
+.services-banner-text {
+    color: #fff;
+    border-color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+.services-heading {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.services-heading h1 {
+    margin-bottom: 0;
+}
+
+.contact-heading h2 {
+    margin-bottom: 0;
+}
+
+.services-page h2 {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.services-page h2 + p {
+    margin-top: 0;
+}
+
+.wiggly-underline {
+    display: block;
+    width: 200%;
+    height: 14px;
+    margin-top: -4px;
+    overflow: visible;
+}
+
+.wiggly-underline path {
+    fill: none;
+    stroke: #333;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: drawWiggleUnderline 1.2s ease-out 0.2s forwards;
+}
+
+@keyframes drawWiggleUnderline {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
